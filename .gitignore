@@ -1,0 +1,26 @@
+node_modules/
+.pnpm-store/
+dist/
+out/
+release/
+coverage/
+*.log
+.DS_Store
+
+# Authentication and inspection artifacts (never commit)
+.dev-session/
+.har/
+.network-logs/
+temp/
+downloads/
+
+# Local environment and IDE files
+.env
+.env.*
+!.env.example
+.idea/
+.vscode/
+
+# Upstream research checkout; extracted code must retain its own license.
+third_party/video-to-ppt-upstream/
+third_party/upstream/

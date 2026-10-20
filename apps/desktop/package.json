@@ -1,0 +1,92 @@
+{
+  "name": "@xjtu-lecture2ppt/desktop",
+  "productName": "XJTU Lecture2PPT",
+  "version": "0.1.0",
+  "description": "Convert authorized XJTU lecture recordings to PDF handouts and OCR text on Windows.",
+  "author": "XJTU Lecture2PPT Contributors",
+  "private": true,
+  "type": "module",
+  "main": "./out/main/index.js",
+  "scripts": {
+    "build": "electron-vite build",
+    "dev": "electron-vite dev",
+    "package:win": "electron-vite build && electron-builder --win nsis portable",
+    "preview": "electron-vite preview",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@xjtu-lecture2ppt/document-exporter": "workspace:*",
+    "@xjtu-lecture2ppt/downloader": "workspace:*",
+    "@xjtu-lecture2ppt/shared": "workspace:*",
+    "@xjtu-lecture2ppt/video-to-ppt-core": "workspace:*",
+    "@xjtu-lecture2ppt/xjtu-client": "workspace:*",
+    "jszip": "^3.10.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "electron": "^38.0.0",
+    "electron-builder": "^26.0.0",
+    "electron-vite": "^4.0.0",
+    "typescript": "^5.9.0",
+    "vite": "^7.0.0"
+  },
+  "build": {
+    "appId": "cn.edu.xjtu.lecture2ppt",
+    "productName": "XJTU Lecture2PPT",
+    "asar": true,
+    "directories": {
+      "output": "../../release"
+    },
+    "files": [
+      "out/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "../../third_party/runtime/rapidocr/win7_x64_RapidOCR-json",
+        "to": "document-tools/rapidocr"
+      },
+      {
+        "from": "../../third_party/runtime/libreoffice",
+        "to": "document-tools/libreoffice"
+      },
+      {
+        "from": "../../packages/document-exporter/NOTICE.md",
+        "to": "document-tools/licenses/document-exporter-NOTICE.md"
+      },
+      {
+        "from": "../../packages/document-exporter/LICENSE.libreoffice-convert.txt",
+        "to": "document-tools/licenses/libreoffice-convert-MIT.txt"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "artifactName": "${productName}-${version}-${arch}-Setup.${ext}",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "portable": {
+      "artifactName": "${productName}-${version}-${arch}-Portable.${ext}"
+    }
+  }
+}

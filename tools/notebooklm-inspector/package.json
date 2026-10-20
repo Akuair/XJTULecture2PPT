@@ -1,0 +1,18 @@
+{
+  "name": "@xjtu-lecture2ppt/notebooklm-inspector",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "start:edge": "tsx src/index.ts --browser=edge",
+    "validate:formal": "tsx src/validate-formal-session.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "playwright": "^1.55.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0"
+  }
+}
