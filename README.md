@@ -1,0 +1,2 @@
+# XJTULecture2PPT
+一个自动将XJTU课堂回放转为ppt的项目
